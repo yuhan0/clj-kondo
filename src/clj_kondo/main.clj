@@ -7,10 +7,15 @@
    [clj-kondo.impl.vars :refer [fn-call-findings]]
    [clojure.edn :as edn]
    [clojure.java.io :as io]
+   [clojure.spec.alpha :as s]
    [clojure.string :as str
     :refer [starts-with?
             ends-with?]])
   (:import [java.util.jar JarFile JarFile$JarFileEntry]))
+
+(when (= "true" (System/getenv "CLJ_KONDO_GRAALVM"))
+  (println "patching clojure.spec")
+  (require '[clj-kondo.impl.spec-patch]))
 
 (def ^:private version (str/trim
                         (slurp (io/resource "CLJ_KONDO_VERSION"))))
@@ -232,8 +237,12 @@ Options:
 
 ;;;; main
 
+(s/def ::foo (s/or :keys (s/keys :req-un [::a ::b])
+                   :string string?))
+
 (defn main
   [& options]
+  (println (s/conform ::foo {:a 1 :b 2}))
   (let [start-time (System/currentTimeMillis)
         {:keys [:opts
                 :files
