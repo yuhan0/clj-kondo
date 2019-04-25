@@ -10,6 +10,7 @@
                  [rewrite-clj "0.6.1"]
                  [com.cognitect/transit-clj "0.8.313"]]
   :main clj-kondo.main
+  :profiles {:uberjar {:aot :all}}
   :aliases {"clj-kondo" ["run" "-m" "clj-kondo.main"]}
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
                                     :username :env/clojars_user
