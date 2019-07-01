@@ -25,11 +25,10 @@ build_script:
 
     call script/compile.bat
 
-test: off
 test_script:
-- sh: >-
-    echo '(inc)' | clj-kondo --lint -
-    echo $?
+- cmd: >-
+    echo (inc) | clj-kondo --lint -
+    echo Exit Code is %errorlevel%
 
 artifacts:
 - path: clj-kondo-*-windows-amd64.zip
