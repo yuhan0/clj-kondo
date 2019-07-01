@@ -25,6 +25,7 @@ build_script:
 
     call script/compile.bat
 
+test: off
 test_script:
 - sh: >-
     echo '(inc)' | clj-kondo --lint -
