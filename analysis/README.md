@@ -279,3 +279,6 @@ $ clj -m clj-kondo.tools.circular-dependencies /tmp/circular.clj
 /tmp/circular.clj:3:17: circular dependendy from namespace b to a
 /tmp/circular.clj:5:17: circular dependendy from namespace c to a
 ```
+
+### Underscored namespaces
+
