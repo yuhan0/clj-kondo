@@ -1,4 +1,4 @@
-# Analysis data
+# Analysis data and tools
 
 Clj-kondo can provide data that was collected during linting, which enables
 writing tools and linters that are not yet in clj-kondo itself. To get this
@@ -148,12 +148,12 @@ $ clj -m clj-kondo.tools.pprint edn /tmp/foo.clj
 
 NOTE: breaking changes may occur as result of feedback in the next few weeks (2019-07-30).
 
-## Examples
+## Example tools
 
 These are examples of what you can do with the analysis data that clj-kondo
 provides as a result of linting your sources.
 
-To run the examples on your system you will need the Clojure [CLI
+To run the tools on your system you will need the Clojure [CLI
 tool](https://clojure.org/guides/getting_started) version 1.10.1.466 or higher
 and then use this repo as a git dep:
 
@@ -164,6 +164,25 @@ and then use this repo as a git dep:
 ```
 
 Replace the `:sha` with the latest SHA of this repo.
+
+You can create an alias for a tool in your `~/.clojure/deps.edn`:
+
+```
+{
+ :aliases {:namespace-graph
+           {:extra-deps {clj-kondo/tools {:git/url "https://github.com/borkdude/clj-kondo"
+                                          :sha "1ed3b11025b7f3a582e6db099ba10a888fe0fc2c"
+                                          :deps/root "analysis"}}
+            :main-opts ["-m" "clj-kondo.tools.namespace-graph"]}
+ }
+}
+```
+
+and then call it from anywhere in your system with:
+
+```
+~/git/clojure (master) $ clj -A:namespace-graph src
+```
 
 ### Unused vars
 
@@ -264,9 +283,9 @@ clj-kondo.impl.namespace/reg-alias!: missing docstring
 
 ### Circular dependencies
 
-Code:
+Example code:
 
-```
+``` clojure
 (ns a (:require b c))
 
 (ns b (:require a)) ;; circular dependency
