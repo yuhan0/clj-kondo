@@ -301,3 +301,19 @@ $ clj -m clj-kondo.tools.circular-dependencies /tmp/circular.clj
 
 ### Underscored namespaces
 
+Example code:
+
+``` clojure
+(ns underscored_ns)
+(ns hyphened-ns)
+
+(ns consumer
+  (:require [underscored-ns]
+            [hyphened_ns]))
+```
+
+``` clojure
+$ clj -m clj-kondo.tools.underscored-namespaces /tmp/test.clj
+/tmp/test.clj:5:14: warning: namespace underscored_ns is spelled with underscores but required as underscored-ns
+/tmp/test.clj:6:14: warning: namespace hyphened-ns is spelled with hyphens but required as hyphened_ns
+```
