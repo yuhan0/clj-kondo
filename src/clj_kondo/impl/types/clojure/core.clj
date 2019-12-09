@@ -74,7 +74,9 @@
    ;; 126
    'seq {:arities {1 {:args [:seqable]
                       :ret :seq}}}
-   ;; 139 'instance?
+   ;; 139
+   'instance? {:arities {2 {:args [:class :any]
+                            :ret :seqs}}}
    ;; 146
    'seq? any->boolean
    ;; 153
@@ -181,7 +183,9 @@
    'delay? any->boolean
    ;; 761 'force
    ;; 767 'if-not
-   ;; 775 'identical?
+   ;; 775
+   'identical? {:arities {2 {:args [:any :any]
+                             :ret :boolean}}}
    ;; 783
    '= {:arities {:varargs {:args [:any {:op :rest :spec :any}]
                            :ret :boolean}}}
@@ -322,7 +326,9 @@
                       :ret :vector}}}
    ;; 1478
    'map-entry? any->boolean
-   ;; 1484 'contains?
+   ;; 1484
+   'contains? {:arities {2 {:args [#{:map :set} :any]
+                            :ret :boolean}}}
    ;; 1494
    'get {:arities {2 {:args [:nilable/associative :any]
                       :ret :any}
@@ -758,14 +764,20 @@
    ;; 5537 'not-empty
    ;; 5543 'bases
    ;; 5553 'supers
-   ;; 5564 'isa?
+   ;; 5564
+   'isa? {:arities {2 {:args [:any :any]
+                       :ret :boolean}
+                    3 {:args [:map :any :any]
+                       :ret :boolean}}}
    ;; 5585 'parents
    ;; 5598 'ancestors
    ;; 5614 'descendants
    ;; 5626 'derive
    ;; 5662 'flatten
    ;; 5664 'underive
-   ;; 5685 'distinct?
+   ;; 5685
+   'distinct? {:varargs {:args [:any {:op :rest :spec :any}]
+                         :ret :boolean}}
    ;; 5702 'resultset-seq
    ;; 5721 'iterator-seq
    ;; 5731 'enumeration-seq
