@@ -55,7 +55,7 @@
    :seq #{:list}
    :sequential #{:seq :list :vector :seqable-out :ifn :associative}})
 
-(def misc-types #{:boolean :atom :regex :char})
+(def misc-types #{:boolean :atom :regex :char :class})
 
 (defn nilable? [k]
   (= "nilable" (namespace k)))
@@ -96,7 +96,8 @@
    :seqable-or-transducer "seqable or transducer"
    :set "set"
    :char-sequence "char sequence"
-   :sequential "sequential collection"})
+   :sequential "sequential collection"
+   :class "class"})
 
 (defn label [k]
   (cond

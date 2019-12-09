@@ -557,8 +557,10 @@
    ;; 3400 'disj!
    ;; 3425 'import
    ;; 3443 'into-array
-   ;; 3460 'class
-   ;; 3466 'type
+   ;; 3460
+   'class {:arities {1 {:ret :class}}}
+   ;; 3466
+   'type {:arities {1 {:ret :class}}}
    ;; 3473 'num
    ;; 3480 'long
    ;; 3486 'float
